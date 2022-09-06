@@ -94,10 +94,10 @@ class Data:
     DicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU'}
     DicSesion = {'FP1':'░F░P░1░🏁','FP2':'F P 2 🏁','FP3':'FP3🏁','Q':'Qualy Session🏁','R':'Race🏁','S':'Sprint Race🏁'}
 
-    def __init__(self, name,year,weekend,session):
+    def __init__(self, name,year,weekend,sesion):
         self.name = name
-        self.sesion = session
-        self.session= ff1.get_session(year,weekend,session)
+        self.sesion = sesion
+        self.session= ff1.get_session(year,weekend,sesion)
         self.driverDataLaps = self.session.load_laps(with_telemetry=True).pick_driver(self.name)
         self.driverDataFastestLap = self.driverDataLaps.pick_fastest()
         self.driverTelFastestLap  = self.driverDataFastestLap.get_car_data()
@@ -121,7 +121,7 @@ class Data:
                 
                 ls.append(get_sectorFromObject(str(self.currentDriverLap['Sector1Time']),3))
                 ls.append(get_sectorFromObject(str(self.currentDriverLap['Sector2Time']),3))
-                ls.append(get_lapFromObject(str(self.currentDriverLap['Sector3Time']),3))
+                ls.append(get_sectorFromObject(str(self.currentDriverLap['Sector3Time']),3))
                 listDic, listComp = [],[]
                 listComp = str(self.currentDriverLap['Compound'])[4:].split()
                 listDic.append(self.currentDriverLapTime)
@@ -219,5 +219,73 @@ class Data:
     def get_stars_number(self):
         print("Numero total de estrellas: {}")
 
-per = Data('PER', 2021, 'Yas Marina', 'Q')
-print(per.get_velMax())
+    def fastlap(self,driver):  
+        fastlap = self.session.load_laps(with_telemetry=True).pick_driver(driver).pick_fastest()
+        dic = {1:[]}
+        ls = []
+        #selecciona la vuelta
+        #convertir vuelta a string
+        driverLapLaptime = get_lapFromObject(str(fastlap.LapTime))
+        print(fastlap['Sector1Time'])
+        print(fastlap['Sector2Time'])
+        print(fastlap['Sector3Time'])
+        ls.append(get_sectorFromObject(str(fastlap['Sector1Time']),2))
+        ls.append(get_sectorFromObject(str(fastlap['Sector2Time']),2))
+        ls.append(get_sectorFromObject(str(fastlap['Sector3Time']),2))
+
+        #Checa si existe el laptime de la vuelta
+        if driverLapLaptime != ':LpTime,tpe:timeelt64[n]' and driverLapLaptime != 'e:LpTime,tpe:timeelt64[n]' and driverLapLaptime != 'elt64[n]':
+            listDic, listComp = [],[]
+            listComp = str(fastlap['Compound'])[0:].split()
+            dic[1].append(driverLapLaptime)
+            dic[1].append(listComp[0])
+            dic[1].append(ls)
+        return dic
+
+    def tweetFastLapPV(self,d1,d2):
+        dic = {}
+        dicDriver1 = self.fastlap(d1)
+        dicDriver2 = self.fastlap(d2)
+        secdriver1 = float(get_secFromLap(dicDriver1[1][0]))
+        secdriver2 = float(get_secFromLap(dicDriver2[1][0]))
+        tDriver1 = dicDriver1[1][0]
+        tDriver2 = dicDriver2[1][0]
+        tyreDriver1 = get_typeOfTyre(dicDriver1[1][1])
+        tyreDriver2 = get_typeOfTyre(dicDriver2[1][1])
+        
+        d1ls = [d1,d1,self.DicDrivers[d1]]
+        d2ls = [d2,d2,self.DicDrivers[d2]]
+        if (secdriver1 < secdriver2): 
+            tDiff = "{:.3f}".format(secdriver2 - secdriver1)
+            dic['Fastest'] = d1ls
+            dic['Slowest'] = d2ls
+            dic['Diferencia'] = tDiff
+            dic['LaptimeF'] = dicDriver1[1][0]
+            dic['LaptimeS'] = dicDriver2[1][0]
+            dic['Fsectors'] = dicDriver1[1][2]
+            dic['Ssectors'] = dicDriver2[1][2]
+            dic['TyreF'] = tyreDriver1
+            dic['TyreS'] = tyreDriver2
+        else:
+            tDiff = "{:.3f}".format(secdriver1 - secdriver2)
+            dic['Fastest'] = d2ls
+            dic['Slowest'] = d1ls
+            dic['Diferencia'] = tDiff
+            dic['LaptimeF'] = dicDriver2[1][0]
+            dic['LaptimeS'] = dicDriver1[1][0]
+            dic['Fsectors'] = dicDriver2[1][2]
+            dic['Ssectors'] = dicDriver1[1][2]
+            dic['TyreF'] = tyreDriver2
+            dic['TyreS'] = tyreDriver1
+        
+        diffS1 = float("{:.3f}".format(float(dic['Ssectors'][0]) - float(dic['Fsectors'][0])))
+        if diffS1 >= 0: diffS1 = "+"+str(diffS1)
+        diffS2 = float("{:.3f}".format(float(dic['Ssectors'][1]) - float(dic['Fsectors'][1])))
+        if diffS2 >= 0: diffS2 = "+"+str(diffS2)
+        diffS3 = float("{:.3f}".format(float(dic['Ssectors'][2]) - float(dic['Fsectors'][2])))
+        if diffS3 >= 0: diffS3 = "+"+str(diffS3)
+        
+        text = self.DicSesion[self.sesion]+"\nMas rapido " + dic['Fastest'][2] + " a una vuelta que "+ dic['Slowest'][2] +"\n\n"+ dic['Fastest'][2] + ": " + dic['LaptimeF'] +" "+dic['TyreF']+ "\n S1: " +dic['Fsectors'][0]+"   S2: "+dic['Fsectors'][1]+"   S3: "+dic['Fsectors'][2]+"\n\n"+ dic['Slowest'][2] + ": " + dic['LaptimeS']+ " "+dic['TyreS']+"\n S1: " +dic['Ssectors'][0]+"   S2: "+dic['Ssectors'][1]+"    S3: "+dic['Ssectors'][2]+ "\n\nGap +" +dic['Diferencia'] +" ( S1: "+str(diffS1)+", S2: "+str(diffS2)+", S3: "+str(diffS3)+")\n"+str((self.session.event['EventName'])).replace(" ", "")
+        return text
+per = Data('PER', 2022, 14, 'FP3')
+print(per.tweetFastLapPV('PER','VER'))

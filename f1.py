@@ -1,4 +1,3 @@
-import re
 import fastf1 as ff1
 from fastf1 import plotting
 from matplotlib.collections import LineCollection
@@ -6,7 +5,7 @@ import pandas as pd
 from datetime import date 
 from fastf1 import plotting 
 from matplotlib import pyplot as plt
-
+import re
 #datetime
 today = date.today()
 d1 = today.strftime("%d/%m/%Y")
