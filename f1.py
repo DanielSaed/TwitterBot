@@ -18,7 +18,7 @@ DicSesion = {'FP1':'░F░P░1░🏁','FP2':'F P 2 🏁','FP3':'FP3🏁','Q':
     sesion = input()
     if sesion == 'FP1' or sesion == 'FP2' or sesion == 'FP3' or sesion == 'Q' or sesion == 'R' or sesion == 'S':
         ans = 'true' '''
-carrera = 14
+carrera = 16
 sesion = 'FP2'
 dicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU'}
 listDrivers = ['PER','LEC','VER','SAI','ALO','HAM','RUS','OCO','NOR','RIC','GAS','TSU','MSC','MAG','STR','VET','ALB','LAT','BOT','ZHO']
@@ -597,4 +597,4 @@ plt.show()
 
 
 
-#print(tweetFastLapPV())
+print(tweetStintCarreraRF())
