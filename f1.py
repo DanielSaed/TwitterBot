@@ -18,8 +18,8 @@ DicSesion = {'FP1':'░F░P░1░🏁','FP2':'F P 2 🏁','FP3':'FP3🏁','Q':
     sesion = input()
     if sesion == 'FP1' or sesion == 'FP2' or sesion == 'FP3' or sesion == 'Q' or sesion == 'R' or sesion == 'S':
         ans = 'true' '''
-carrera = 16
-sesion = 'FP2'
+carrera = 1
+sesion = 'Q'
 dicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU'}
 listDrivers = ['PER','LEC','VER','SAI','ALO','HAM','RUS','OCO','NOR','RIC','GAS','TSU','MSC','MAG','STR','VET','ALB','LAT','BOT','ZHO']
 plotting.setup_mpl()
@@ -539,6 +539,8 @@ pd.options.mode.chained_assignment = None
 # Cargar la carrera y clasificación
 race = ff1.get_session(2022, int(carrera), sesion)
 pathApi = ff1.api.make_path('Hungarian Grand Prix', '2022-07-31','Race','2022-07-31')
+sss = ff1.api.session_status_data(pathApi)
+
 quali = ff1.get_session(2021, 'Yas Marina', 'Q')
 res = ''
 live,live1 = ff1.api.timing_data(pathApi)
@@ -546,12 +548,14 @@ car = ff1.api.car_data(pathApi)
 # Get the laps
 
 laps_r = race.load_laps(with_telemetry=True)
-
+#ppp = sss.load(laps =True)
 live11 = live1[live1.Driver == '11']
 
 live12 = live = live[live.Driver == '11']
 
 best = live12[live12.IsPersonalBest == True]
+
+
 
 laps_r.head()
 race.load()
@@ -562,10 +566,13 @@ fastest_lap = laps_r
 #print(f'Piloto: ',fastest_lap['Driver'])
 
 PER_lap = laps_r.pick_driver('PER')
+
+
 VER_lap = laps_r.pick_driver('VER')
 PER_Fastest = PER_lap.pick_fastest()
 VER_Fastest = VER_lap.pick_fastest()
-
+#print(PER_lap)
+print(PER_lap)
 #PER_actual = PER_lap[PER_lap.LapNumber==10]
 #VER_actual = VER_lap[VER_lap.LapNumber==10]
 
@@ -596,5 +603,3 @@ plt.show()
 #print(tweetStintQualy('PER')
 
 
-
-print(tweetStintCarreraRF())

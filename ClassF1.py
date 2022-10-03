@@ -21,6 +21,7 @@ pd.options.mode.chained_assignment = None
 
 #Get seconds from laptime
 def get_secFromLap(string):
+        
         if(len(string) == 6):
             string+='0'
         if(len(string) == 7):
@@ -66,7 +67,9 @@ def get_lapFromObject(laptime):
     characters = "days "
     for i in range(len(characters)):
         laptime = laptime.replace(characters[i],"")
+    
     laptime = re.sub(r'.', '', laptime, count = 5)
+    
     laptime = laptime.replace("000","")
     l = laptime.split()
     lap = l[0]
@@ -75,6 +78,11 @@ def get_lapFromObject(laptime):
             break
         else:
             lap= lap[1:]
+   
+    
+    
+    if (lap[0] == '0'):
+        lap = '2:00.000'
     return lap
 
 #input the tyre ouput a short name of it
@@ -95,8 +103,8 @@ class Sesion:
     DicSesion = {'FP1':'░F░P░1░🏁','FP2':'F P 2 🏁','FP3':'FP3🏁','Q':'Qualy Session🏁','R':'Race🏁','S':'Sprint Race🏁'}
     listDrivers = ['PER','LEC','VER','SAI','ALO','HAM','RUS','OCO','NOR','RIC','GAS','TSU','MSC','MAG','STR','VET','DEV','LAT','BOT','ZHO']
    
-    def __init__(self, name,year,weekend,sesion):
-        self.name = name
+    def __init__(self,year,weekend,sesion):
+        
         self.sesion = sesion
         self.session= ff1.get_session(year,weekend,sesion)
         self.driverDataLapsLoad = self.session.load_laps(with_telemetry=True)
@@ -138,6 +146,7 @@ class Sesion:
         print(fastestLap)
 
         dic = self.get_lapsInStint(driver)
+        
         dicNew = {}
         for i in dic:
             cont = 0
@@ -322,12 +331,156 @@ class Sesion:
             text += str(cont) + '- ' + str(i[1]) + ' ' + get_lapFromSec(str(i[0])) + ' ' + i[2] +'\n'
         return text
 
+    def get_StringCarreraRF(self):
+        dicNew = {}
+        dicPER = self.get_avgStint('PER')
+        dicVER = self.get_avgStint('VER')
+        dicLEC = self.get_avgStint('LEC')
+        dicSAI = self.get_avgStint('SAI')
+        print(dicLEC)
+        i = 1
+        for a in dicPER:
+            if dicPER[a]['Tipo']=='Sim. Carrera':
+                dic1 = {'Average': get_secFromLap(dicPER[a]['Average']),'Tyre':str(dicPER[a]['Tyre']),'LapNumber':str(dicPER[a]['LapNumber']),'Driver':'🇲🇽PER','AvgS1':dicPER[a]['AvgS1'],'AvgS2':dicPER[a]['AvgS2'],'AvgS3':dicPER[a]['AvgS3']}
+                dicNew[i]=dic1
+                i += 1
+        for b in dicVER:
+            if dicVER[b]['Tipo']=='Sim. Carrera':
+                dic1 = {'Average': get_secFromLap(dicVER[b]['Average']),'Tyre':str(dicVER[b]['Tyre']),'LapNumber':str(dicVER[b]['LapNumber']),'Driver':'🇳🇱VER','AvgS1':dicVER[b]['AvgS1'],'AvgS2':dicVER[b]['AvgS2'],'AvgS3':dicVER[b]['AvgS3']}
+                dicNew[i]=dic1
+                i += 1
+        for c in dicLEC:
+            if dicLEC[c]['Tipo']=='Sim. Carrera':
+                print(dicLEC[c]['Average'])
+                dic1 = {'Average': get_secFromLap(dicLEC[c]['Average']),'Tyre':str(dicLEC[c]['Tyre']),'LapNumber':str(dicLEC[c]['LapNumber']),'Driver':'🇲🇨LEC','AvgS1':dicLEC[c]['AvgS1'],'AvgS2':dicLEC[c]['AvgS2'],'AvgS3':dicLEC[c]['AvgS3']}
+                dicNew[i]=dic1
+                i += 1
+        #print(dicNew)
+        for d in dicSAI:
+            if dicSAI[d]['Tipo']=='Sim. Carrera':
+                dic1 = {'Average': get_secFromLap(dicSAI[d]['Average']),'Tyre':str(dicSAI[d]['Tyre']),'LapNumber':str(dicSAI[d]['LapNumber']),'Driver':'🇪🇸SAI','AvgS1':dicSAI[d]['AvgS1'],'AvgS2':dicSAI[d]['AvgS2'],'AvgS3':dicSAI[d]['AvgS3']}
+                dicNew[i]=dic1
+                i += 1
+        
+        fastest = 0
+        dicFinal = {}
+        longitud = len(dicNew)
+
+        for f in range(1,i):
+            fast = 201
+            for e in dicNew:
+                if float(dicNew[e]['Average']) < fast:
+                    fast = float(dicNew[e]['Average'])
+                    fastest = e
+                    #print(e)
+            dicFinal[f]=dicNew[fastest].copy()
+            dicNew.pop(fastest)
+        text1 =''
+        text = []
+        cont = 0
+        lsNumber = [0,'1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣',8,9,10]
+        text1 = self.DicSesion[self.sesion]+'\n𝗦𝗶𝗺𝘂𝗹𝗮𝗰𝗶𝗼𝗻 𝗱𝗲 𝗰𝗮𝗿𝗿𝗲𝗿𝗮\n🇦🇹 𝐑𝐞𝐝 𝐁𝐮𝐥𝐥 𝐯𝐬 𝐅𝐞𝐫𝐫𝐚𝐫𝐢 🇮🇹\n\n'
+    
+        for g in dicFinal:
+            if len(text1) > 190:
+                text1 += '1 \ 2 ⤵'
+                text.append(text1)
+                text1 = ''
+                cont+=1
+            text1 += str(lsNumber[g]) + " " + str(dicFinal[g]['Driver'])+"  Ritmo: "+ str(get_lapFromSec(dicFinal[g]['Average']))+ "  v:"+str(dicFinal[g]['LapNumber'])+ "  " +str(dicFinal[g]['Tyre'])+ "\n \n"
+        text.append(text1)
+        return text
+
+    def get_StringStintQualyRF(self):
+        dicNew = {}
+        dicPER = self.get_avgStint('PER')
+        dicVER = self.get_avgStint('VER')
+        dicLEC = self.get_avgStint('LEC')
+        dicSAI = self.get_avgStint('SAI')
+        cont = 0
+        i = 1
+
+        #New Dictionaries with the data of the 4 drivers
+        for a in dicPER:
+            if dicPER[a]['Tipo']=='Sim. Qualy':
+                    dic1 = {'Fastest': get_secFromLap(dicPER[a]['Fastest']),'Tyre':str(dicPER[a]['Tyre']),'LapNumber':str(dicPER[a]['LapNumber']),'Driver':'🇲🇽PER','S1':dicPER[a]['S1'],'S2':dicPER[a]['S2'],'S3':dicPER[a]['S3']}
+                    dicNew[i]=dic1  
+                    i += 1
+        for b in dicVER:
+            if dicVER[b]['Tipo']=='Sim. Qualy':
+                    dic1 = {'Fastest': get_secFromLap(dicVER[b]['Fastest']),'Tyre':str(dicVER[b]['Tyre']),'LapNumber':str(dicVER[b]['LapNumber']),'Driver':'🇳🇱VER','S1':dicVER[b]['S1'],'S2':dicVER[b]['S2'],'S3':dicVER[b]['S3']}
+                    dicNew[i]=dic1    
+                    i += 1
+        for c in dicLEC:
+            if dicLEC[c]['Tipo']=='Sim. Qualy':
+                    dic1 = {'Fastest': get_secFromLap(dicLEC[c]['Fastest']),'Tyre':str(dicLEC[c]['Tyre']),'LapNumber':str(dicLEC[c]['LapNumber']),'Driver':'🇲🇨LEC','S1':dicLEC[c]['S1'],'S2':dicLEC[c]['S2'],'S3':dicLEC[c]['S3']}
+                    dicNew[i]=dic1
+                    i += 1 
+        for d in dicSAI:
+            if dicSAI[d]['Tipo']=='Sim. Qualy':
+                if cont < 2:
+                    dic1 = {'Fastest': get_secFromLap(dicSAI[d]['Fastest']),'Tyre':str(dicSAI[d]['Tyre']),'LapNumber':str(dicSAI[d]['LapNumber']),'Driver':'🇪🇸SAI','S1':dicSAI[d]['S1'],'S2':dicSAI[d]['S2'],'S3':dicSAI[d]['S3']}
+                    dicNew[i]=dic1
+                    i += 1
+                
+        fastest = 0
+        dicFinal = {}
+        lsname = []
+
+        #order fastest to slowest
+        for f in range(1,i):
+            fast = 201
+            for e in dicNew:
+                if float(dicNew[e]['Fastest']) < fast:
+                    fast = float(dicNew[e]['Fastest']) 
+                    fastest = e
+                    #print(e)
+            dicFinal[f]=dicNew[fastest].copy()
+            dicNew.pop(fastest)
+        
+        #select the 2 fastest stints per driver
+        for m in range(1,len(dicFinal)+1):
+            valido = 0
+            lsname1 = list(lsname)
+            print(lsname)
+            print(lsname1)
+            for z in lsname:
+                if z == dicFinal[m]['Driver']:
+                    lsname1.remove(z)
+                    for w in lsname1:
+                        if w == dicFinal[m]['Driver']:
+                            valido = 1
+            lsname.append(dicFinal[m]['Driver']) 
+            if valido == 1:
+                print('borrado')
+                dicFinal.pop(m)
+
+        #put it all in a final string
+        text1,text2 ='',''
+        cont,i = 0, 0
+        text = []
+        text1 = self.DicSesion[self.sesion]+'\n𝗦𝗶𝗺𝘂𝗹𝗮𝗰𝗶𝗼𝗻 𝗱𝗲 Qualy\n🇦🇹 𝐑𝐞𝐝 𝐁𝐮𝐥𝐥 𝐯𝐬 𝐅𝐞𝐫𝐫𝐚𝐫𝐢 🇮🇹\nMejores 2 intentos\n\n'
+        lsNumber = [0,'1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣',8,9,10]
+        for g in dicFinal:
+            i+=1
+            
+            if len(text) > 198:
+                if len(text1) >198:
+                    text1 += 'continua ⤵'
+                    cont+=1
+                    text.append(text1)
+                    text1 = '' 
+            text1 += str(lsNumber[i]) + ".-"+str(dicFinal[g]['Driver'])+"  Lap: "+str(get_lapFromSec(dicFinal[g]['Fastest']))+"  "+str(dicFinal[g]['Tyre'])+ "\n\n" 
+           
+        text.append(text1)
+        return text
+   
 
 class Driver(Sesion):
     def __init__(self, name,year,weekend,sesion):
 
-        super().__init__(name,year,weekend,sesion)
-        self.dueño = name
+        super().__init__(year,weekend,sesion)
+        self.name = name
         self.driverDataLaps = self.session.load_laps(with_telemetry=True).pick_driver(self.name)
         self.driverDataFastestLap = self.driverDataLaps.pick_fastest()
         self.driverTelFastestLap  = self.driverDataFastestLap.get_car_data()
@@ -353,13 +506,13 @@ class Driver(Sesion):
                 vel = int(i)
         return str(vel) + " km\h"
 
-    def tweetVueltasDadas(self):
+    def get_StringVueltasDadas(self):
         cont = 1
         vueltas = 0
         for i in self.driverDataLaps:
             cont +=1
         
-        dic = self.get_avgStint()
+        dic = self.get_avgStint(self.name)
         for i in dic:
             if dic[i]['Tipo'] == 'Sim. Qualy' or dic[i]['Tipo'] == 'Vueltas Rapidas' or dic[i]['Tipo'] == 'Sim. Carrera':
                 vueltas += int(dic[i]['LapNumber'])
@@ -368,6 +521,7 @@ class Driver(Sesion):
 
     def get_StringStintQualy(self):
         dic = self.get_avgStint(self.name)
+        
         cont = 0
         text = []
         text1 = self.DicDrivers[self.name]+ ' 𝙑𝙪𝙚𝙡𝙩𝙖𝙨 𝙋𝙤𝙘𝙖 𝙂𝙖𝙨𝙤𝙡𝙞𝙣𝙖 '+self.DicSesion[self.sesion]+'\n\n'
@@ -381,8 +535,29 @@ class Driver(Sesion):
                 for x in dic[a]['Laps']:
                     text1 += " "+x + "\n"
                 text1 += "\n\n"
+        if (text == []):
+            text.append(text1)
         #text += '\n#F1 #SP11'
         return text
 
+    def get_StringStintCarrera(self):
+        dic = self.get_avgStint(self.name)
+        text = []
+        text1 = self.DicDrivers[self.name]+ ' 𝙎𝙞𝙢𝙪𝙡𝙖𝙘𝙞𝙤𝙣 𝘾𝙖𝙧𝙧𝙚𝙧𝙖 '+self.DicSesion[self.sesion]+'\n\n'
+        cont = 0
+        for a in dic:
+            if dic[a]['Tipo']=='Sim. Carrera':
+                text1 += "Ritmo: "+str(dic[a]['Average'])+" - "+ str(dic[a]['LapNumber'])+"L - "+ str(dic[a]['Tyre'])+" " +str(dic[a]['Tipo'])+"\n"
+                text1 += "Avg sectors  S1: "+str(dic[a]['AvgS1'])+"  S2: "+ str(dic[a]['AvgS2'])+"  S3: "+ str(dic[a]['AvgS3'])+"\n\nLaps:\n"
+                
+                for x in dic[a]['Laps']:
+                    text1 += " "+x + "\n"
+                cont+=1
+                text.append(text1)
+                text1 = ''
+        return text
+
+    
+sesion = Sesion(2022, 15, 'FP2')
 per = Driver('PER', 2022, 16, 'FP3')
-print(per.get_StringStintQualy())
+print(sesion.tweetStintQualyRF())
