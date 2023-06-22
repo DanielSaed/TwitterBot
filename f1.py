@@ -6,6 +6,7 @@ from datetime import date
 from fastf1 import plotting 
 from matplotlib import pyplot as plt
 import re
+
 #datetime
 today = date.today()
 d1 = today.strftime("%d/%m/%Y")
