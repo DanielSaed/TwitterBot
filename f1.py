@@ -6,7 +6,6 @@ from datetime import date
 from fastf1 import plotting 
 from matplotlib import pyplot as plt
 import re
-
 #datetime
 today = date.today()
 d1 = today.strftime("%d/%m/%Y")
@@ -20,7 +19,7 @@ DicSesion = {'FP1':'░F░P░1░🏁','FP2':'F P 2 🏁','FP3':'FP3🏁','Q':
     if sesion == 'FP1' or sesion == 'FP2' or sesion == 'FP3' or sesion == 'Q' or sesion == 'R' or sesion == 'S':
         ans = 'true' '''
 carrera = 1
-sesion = 'Q'
+sesion = 'R'
 dicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU'}
 listDrivers = ['PER','LEC','VER','SAI','ALO','HAM','RUS','OCO','NOR','RIC','GAS','TSU','MSC','MAG','STR','VET','ALB','LAT','BOT','ZHO']
 plotting.setup_mpl()
@@ -229,7 +228,9 @@ def avgStint(piloto):
 #Carga las vueltas por stint en un diccionario de una sesion
 def lapsInStint(piloto):
     #carga las vueltas de verstappen
+    laps_r = race.load_laps(with_telemetry=True)
     driverSesionLaps = laps_r.pick_driver(piloto)
+    
     #print(driverSesionLaps)
     dic = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[]}
     for a in driverSesionLaps.LapNumber:
@@ -540,7 +541,8 @@ pd.options.mode.chained_assignment = None
 # Cargar la carrera y clasificación
 race = ff1.get_session(2022, int(carrera), sesion)
 pathApi = ff1.api.make_path('Hungarian Grand Prix', '2022-07-31','Race','2022-07-31')
-sss = ff1.api.session_status_data(pathApi)
+
+sss= ff1.api.track_status_data(pathApi)
 
 quali = ff1.get_session(2021, 'Yas Marina', 'Q')
 res = ''
@@ -550,9 +552,10 @@ car = ff1.api.car_data(pathApi)
 
 laps_r = race.load_laps(with_telemetry=True)
 #ppp = sss.load(laps =True)
-live11 = live1[live1.Driver == '11']
+#print(sss['Time'][1])
 
 live12 = live = live[live.Driver == '11']
+live11 = live1= live1[live1.Driver == '11']
 
 best = live12[live12.IsPersonalBest == True]
 
@@ -572,8 +575,10 @@ PER_lap = laps_r.pick_driver('PER')
 VER_lap = laps_r.pick_driver('VER')
 PER_Fastest = PER_lap.pick_fastest()
 VER_Fastest = VER_lap.pick_fastest()
-#print(PER_lap)
-print(PER_lap)
+lll = str(PER_lap.TrackStatus).split()
+print(lll[1])
+print(car['11'].Throttle)
+
 #PER_actual = PER_lap[PER_lap.LapNumber==10]
 #VER_actual = VER_lap[VER_lap.LapNumber==10]
 
