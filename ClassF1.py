@@ -16,7 +16,7 @@ s3_client = boto3.client('s3')
 bucket = s3.Bucket("checobot")
 #bucket.upload_file(Key="",Filename="")
 
-ff1.Cache.enable_cache('C:/Users/admin/Documents/Github/cache/__pycache__') 
+ff1.Cache.enable_cache('C:/Users/admin/Documents/Github/__pycache__') 
 pd.options.mode.chained_assignment = None 
 
 
