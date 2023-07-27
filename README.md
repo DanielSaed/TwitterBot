@@ -1,16 +1,16 @@
-# Test de rendimiento bases de datos Nosql
+# TwitterBot de analisis de datos sobre F1 en especial al piloto Sergio Perez
 
-Desarrollar y utilizar las nuevas aplicaciones de la actualidad ha creado nuevas necesidades en la arquitectura de las bases de datos NoSQL, estas tienen que ser cada vez más ágiles, también requieren un desarrollo cada vez más enfocado a los datos en tiempo real, al igual que cada vez es más necesario que esta tecnología pueda procesar cómodamente impredecibles niveles de escala, velocidad y variabilidad de datos, agregando a todo esto la necesidad de las empresas y organizaciones de innovar rápidamente, operar a cualquier escala, además de cumplir la demanda principal que es la experiencia de usuario.
-
+Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion de la serie Drive to survive de Netflix, nuevos fans han llegado a la F1, aunque esto implique tambien que el desconocieminto de ciertos temas tecnicos, el no entender el deporte, la falta de experiencia, entre otras cosas sean situaciones un poco mas visibles por obvias razones, ese es el motivo por el cual decidi empezar este proyecto.
 <br>
 
-## Bases de datos NoSql utilizadas
+## Tecnologias y librerias utilizadas
 
+- Python 3.10 . Matplotlib
+- API Fast F1
+- TweetPY
 - MongoDB
-- Couchbase
-- Azure CosmoDB
 
-*Todas la bases de datos anteriores utilizan el patron de arquitectura de datos por documentos.*
+*El proyecto esta en standby debido a las nuevas reglamentacion de Twitter.*
 
 Las pruebas se hicieron mediante la interfaz de cada base de datos.
 
@@ -28,11 +28,11 @@ Las pruebas se hicieron mediante la interfaz de cada base de datos.
 
 <br>
 
-## Datasets utilizados:
+## Ejemplo Race Pace:
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=650 height=325 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=600 height=400 align="middle"></td>
   </tr>
  </table>
  
