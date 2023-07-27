@@ -73,56 +73,5 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
  </table>
  
  <br>
-## Metodologia
-
-**Metodologia Seguida en la investigacion**
 
 
-**Consultas utilizadas**
-
-Se optó por solamente utilizar consultas de lectura en las pruebas, Se repitió 3 veces la misma consulta y se tomó el promedio, se utilizaron 8 cantidades de resultados diferentes para las mediciones. 
-
-El flujo de trabajo que se utilizó para los conjuntos de datos **Películas** y **Ruta Aviones** fue el siguiente:
-
-- 1,000 resultados
-- 10,000 resultados
--	50,000 resultados
--	100,000 resultados
--	200,000 resultados
--	400,000 resultados
--	600,000 resultados
-- 800,000 resultados
-
-Mientras que para el conjunto de datos **Denue** se utilizaron solamente 6 cantidades diferentes de resultados para las mediciones:
-
-- 1,000 resultados
-- 10,000 resultados
-- 50,000 resultados
-- 100,000 resultados
-- 200,000 resultados
-- 300,000 resultados
-
-<br>
-
-**La prueba se realizó de manera local, se utilizaron 2 métodos para hacer las pruebas de las bases de datos:**
-
-*Test en caliente:*
-- Las consultas se realizaron de manera consecutiva.
-
-*Test en frío:*
-- Las consultas se realizaron apagando el ordenador cada vez que se realizaba una consulta.
-
-<br>
-
-## Resultados
-
-### Resultados Dataset Peliculas 
-
-<table align="middle">
-  <tr>
-    <td><img src="https://github.com/DanielSaed/Investigacion/blob/main/img-github/pelicula.png" width=500 height=480></td>
-    <td><img src="https://github.com/DanielSaed/Investigacion/blob/main/img-github/PeliculasFrio.png" width=500 height=480></td>
-  </tr>
- </table>
-
-### Resultados Dataset Ruta Aviones 
