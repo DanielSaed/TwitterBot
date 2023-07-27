@@ -18,7 +18,7 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Home.png" width=550 height=500 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Home.png" width=600 height=400 align="middle"></td>
   </tr>
  </table>
 
@@ -28,7 +28,7 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Home.png" width=550 height=500 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Comparacion.png" width=550 height=500 align="middle"></td>
   </tr>
  </table>
 
