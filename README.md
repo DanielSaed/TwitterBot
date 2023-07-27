@@ -12,27 +12,13 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
 
 *El proyecto esta en standby debido a las nuevas reglamentacion de Twitter.*
 
-Las pruebas se hicieron mediante la interfaz de cada base de datos.
-
-- MongoDB:  MongoDB Compass.
-- En Azure CosmosDB: Azure Cosmos DB Emulator
-- Couchbase: Dashboard de Couchbase Community Server.
-
-<br>
-
-## Características Computador:
-
-●	Procesador: Ryzen 7 5800H
-●	Ram: 16GB DDR4 3200Mhz
-●	Almacenamiento: 512 GB SSD 3000 mb\s
-
 <br>
 
 ## Ejemplo Race Pace:
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=600 height=400 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=600 height=500 align="middle"></td>
   </tr>
  </table>
  
