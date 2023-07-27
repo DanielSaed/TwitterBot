@@ -32,7 +32,7 @@ Las pruebas se hicieron mediante la interfaz de cada base de datos.
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/Investigacion/blob/main/img-github/tabla.png" width=650 height=325 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=650 height=325 align="middle"></td>
   </tr>
  </table>
  
