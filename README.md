@@ -1,4 +1,4 @@
-# TwitterBot de analisis de datos sobre F1 en especial al piloto Sergio Perez
+# TwitterBot de analisis de datos sobre F1
 
 Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion de la serie Drive to survive de Netflix, nuevos fans han llegado a la F1, aunque esto implique tambien que el desconocieminto de ciertos temas tecnicos, el no entender el deporte, la falta de experiencia, entre otras cosas sean situaciones un poco mas visibles por obvias razones, ese es el motivo por el cual decidi empezar este proyecto.
 <br>
@@ -14,7 +14,27 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
 
 <br>
 
-## Ejemplo Race Pace:
+## Pagina Twitter:
+
+ <table align="middle">
+  <tr align="middle">
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Home.png" width=550 height=500 align="middle"></td>
+  </tr>
+ </table>
+
+<br>
+
+## Tweet comparacion de su vuelta mas rapida en la practica entre Perez y Verstappen:
+
+ <table align="middle">
+  <tr align="middle">
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/Home.png" width=550 height=500 align="middle"></td>
+  </tr>
+ </table>
+
+<br>
+
+## Ejemplo ritmo de carrera en una practica:
 
  <table align="middle">
   <tr align="middle">
@@ -23,18 +43,40 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
  </table>
  
  <br>
- 
-## Metodologia
 
-**Metodologia Seguida en la investigacion**
+## Ejemplo simulacion de calificacion en una practica:
 
-<table align="middle">
-  <tr>
-    <td><img src="https://github.com/DanielSaed/Investigacion/blob/main/img-github/diagrama.png" width=650 height=325></td>
+ <table align="middle">
+  <tr align="middle">
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP3HUNGRIAqualysim.png" width=550 height=500 align="middle"></td>
   </tr>
  </table>
  
  <br>
+ 
+## Ejemplo telemetrai entre 2 vueltas de Perez y Verstappen:
+
+ <table align="middle">
+  <tr align="middle">
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP3HUNGRIAtelemetry.png" width=550 height=500 align="middle"></td>
+  </tr>
+ </table>
+ 
+ <br>
+  
+## Ejemplo Velocidad maxima en una practica:
+
+ <table align="middle">
+  <tr align="middle">
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP3HUNGRIAvelmax.png" width=550 height=500 align="middle"></td>
+  </tr>
+ </table>
+ 
+ <br>
+## Metodologia
+
+**Metodologia Seguida en la investigacion**
+
 
 **Consultas utilizadas**
 
