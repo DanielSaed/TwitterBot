@@ -18,7 +18,7 @@ Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion
 
  <table align="middle">
   <tr align="middle">
-    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=600 height=500 align="middle"></td>
+    <td><img src="https://github.com/DanielSaed/TwitterBot/blob/main/img/FP2HUNGRIAracepace.png" width=500 height=500 align="middle"></td>
   </tr>
  </table>
  
