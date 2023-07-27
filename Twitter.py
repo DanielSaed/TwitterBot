@@ -27,7 +27,7 @@ s3 = boto3.resource('s3')
 bucket = s3.Bucket("checobot")
 name_sesion_normal = ['','FP1','FP2','FP3','Q','R']
 name_sesion_sprint = ['','FP1','Q','FP2','S','R']
-sprint = [4,10,13,18,19,21]
+sprint = [4,9,12,17,18,20]
 practicas = ['FP1','FP2','FP3']
 carreras = ['R','S']
 qualy = ['Q']
@@ -79,8 +79,9 @@ while True:
     namesesion =str(db_next_sesion['sesion'])
     weekend=int(db_next_sesion['fin_de_semana']) 
     numero_sesion =int(db_next_sesion['numero_sesion']) 
+    print(1)
     dict = collection_fechas.find_one({"id": str(weekend)})
-
+    print(int(dict[namesesion]['mes']))
     if(int(now.month) >= int(dict[namesesion]['mes'])):
         print('mes')
         if(int(now.day) >=int(dict[namesesion]['dia'])):
@@ -92,7 +93,7 @@ while True:
                     print('hora')
                     print('minuto')
                     
-                    sesion = ClassF1.Sesion(2022,weekend, namesesion)
+                    sesion = ClassF1.Sesion(2023,weekend, namesesion)
                     #per = ClassF1.Driver('PER', 2022, 18, 'FP3')
 
                     if namesesion in practicas:

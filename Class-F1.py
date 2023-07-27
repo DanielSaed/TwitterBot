@@ -16,7 +16,7 @@ s3_client = boto3.client('s3')
 bucket = s3.Bucket("checobot")
 #bucket.upload_file(Key="",Filename="")
 
-ff1.Cache.enable_cache('C:/Users/admin/Documents/Github/__pycache__') 
+ff1.Cache.enable_cache('C:/Users/admin/Documents/Github/BotTwitter/__pycache__') 
 pd.options.mode.chained_assignment = None 
 
 
@@ -109,11 +109,11 @@ def get_typeOfTyre(tyre):
     return tyre
 
 class Sesion:
-    DicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU','HUL':'🇩🇪HUL','DEV':'🇳🇱DEV','FIT':'🇧🇷FIT','PAL':'🇪🇸PAL','OWA':'🇲🇽OWA','GIO':'🇮🇹GIO','POU':'🇫🇷POU','SAR':'🇺🇸SAR','SHW':'SHW'}
+    DicDrivers = {'PER':'🇲🇽PER','LEC':'🇲🇨LEC','VER':'🇳🇱VER','SAI':'🇪🇸SAI','ALO':'🇪🇸ALO','HAM':'🇬🇧HAM','RUS':'🇬🇧RUS','OCO':'🇫🇷OCO','NOR':'🇬🇧NOR','RIC':'🇦🇺RIC','GAS':'🇫🇷GAS','TSU':'🇯🇵TSU','MSC':'🇩🇪MSC','MAG':'🇩🇰MAG','STR':'🇨🇦STR','VET':'🇩🇪VET','ALB':'🇹🇭ALB','LAT':'🇨🇦LAT','BOT':'🇫🇮BOT','ZOU':'🇨🇳ZOU','HUL':'🇩🇪HUL','DEV':'🇳🇱DEV','FIT':'🇧🇷FIT','PAL':'🇪🇸PAL','OWA':'🇲🇽OWA','GIO':'🇮🇹GIO','POU':'🇫🇷POU','SAR':'🇺🇸SAR','SHW':'SHW','PIA':'PIA🇦🇺'}
     DicSesion = {'FP1':'F P 1 🏁','FP2':'F P 2 🏁','FP3':'F P 3 🏁','Q':'Qualy 🏁','R':'Race 🏁','S':'Sprint Race 🏁'}
-    DicCalendar = {1:"BAHRAIN",2:"ARABIA SAUDITA",3:"AUSTRALIA",4:"AZERBAIJAN",5:"MIAMI",6:"IMOLA",7:"MONACO",8:"ESPAÑA",9:"CANADA",10:"AUSTRIA",11:"GRAN BRETAÑA",12:"HUNGRIA",13:"BELGICA",14:"PAISES BAJOS",15:"ITALIA",16:"SINGAPURE",17:"JAPON",18:"QATAR",19:"USA",20:"MEXICO",21:"BRAZIL",22:"LAS VEGAS",23:"ABU DHABI"}
+    DicCalendar = {1:"BAHRAIN",2:"ARABIA SAUDITA",3:"AUSTRALIA",4:"AZERBAIJAN",5:"MIAMI",6:"MONACO",7:"ESPAÑA",8:"CANADA",9:"AUSTRIA",10:"GRAN BRETAÑA",11:"HUNGRIA",12:"BELGICA",13:"PAISES BAJOS",14:"ITALIA",15:"SINGAPURE",16:"JAPON",17:"QATAR",18:"USA",19:"MEXICO",20:"BRAZIL",21:"LAS VEGAS",22:"ABU DHABI"}
     DicCalendarFlag = {1:"🇧🇭",2:"🇸🇦",3:"🇦🇺",4:"🇦🇿",5:"🇺🇸",6:"🇮🇹",7:"🇲🇨",8:"🇪🇸",9:"🇨🇦",10:"🇦🇹",11:"🇬🇧",12:"🇭🇺",13:"🇧🇪",14:"🇳🇱",15:"🇮🇹",16:"🇸🇬",17:"🇯🇵",18:"🇶🇦",19:"🇺🇸",20:"🇲🇽",21:"🇧🇷",22:"🇺🇸",23:"🇦🇪"}
-    DicTeams = {'RedBull':('PER','VER'),'Ferrari':('SAI','LEC'),'Mercedes':('HAM','RUS'),'Alphine':('GAS','OCO'),'Mclaren':('PIA','NOR'),'AlfaRomeo':('BOT','ZHO'),'AlphaTauri':('DEV','TSU'),'Hass':('HUL','MAG'),'AstonMartin':('ALO','STR'),'Williams':('SAR','ALB')}
+    DicTeams = {'RedBull':('PER','VER'),'Ferrari':('SAI','LEC'),'Mercedes':('HAM','RUS'),'Alphine':('GAS','OCO'),'Mclaren':('PIA','NOR'),'AlfaRomeo':('BOT','ZHO'),'AlphaTauri':('RIC','TSU'),'Hass':('HUL','MAG'),'AstonMartin':('ALO','STR'),'Williams':('SAR','ALB')}
     DicTeamsVel = {'RedBull':0,'Ferrari':0,'Mercedes':0,'Alphine':0,'Mclaren':0,'AlfaRomeo':0,'AlphaTauri':0,'Hass':0,'AstonMartin':0,'Williams':0}
     DicTeamsColor = {'RedBull':'#011E3D','Ferrari':'#ED1C24','Mercedes':'#00A19B','Alphine':'#2173B8','Mclaren':'#FF8000','AlfaRomeo':'#981E32','AlphaTauri':'#2B4562','Hass':'White','AstonMartin':'#00594F','Williams':'#00A3E0'}
     listTeams = ['RedBull','Ferrari','Mercedes','Alphine','Mclaren','AlfaRomeo','AlphaTauri','Hass','AstonMartin','Williams']
@@ -447,7 +447,7 @@ class Sesion:
     def graph_racepace_simulation(self):
         dicNew = {}
         i = 1
-        dicNew = self.dic_sim_racepace_stints('PER','VER','LEC','SAI','HAM','RUS','ALO','STR')
+        dicNew = self.dic_sim_racepace_stints('PER','VER','LEC','SAI','HAM','RUS','ALO','STR','PIA','NOR')
         
         fastest = 0
         dicFinal = {}
@@ -462,7 +462,7 @@ class Sesion:
             dicFinal[f]=dicNew[fastest].copy()
             dicNew.pop(fastest)
         cont = 0
-        textIntro = '𝐒𝐢𝐦𝐮𝐥𝐚𝐜𝐢𝐨𝐧 𝐫𝐢𝐭𝐦𝐨 𝐝𝐞 𝐜𝐚𝐫𝐫𝐞𝐫𝐚\n'+ self.DicSesion[self.sesion]+" "+str((self.session.event['EventName'])).replace(" ", "")+ " "+self.DicCalendarFlag[self.weekend]+'\n𝑹𝒆𝒅𝑩𝒖𝒍𝒍🇦🇹 - 𝑭𝒆𝒓𝒓𝒂𝒓𝒊🇮🇹 - 𝑴𝒆𝒓𝒄𝒆𝒅𝒆𝒔🇩🇪 - 𝑨𝒔𝒕𝒐𝒏 𝑴𝒂𝒓𝒕𝒊𝒏🇬🇧\n'
+        textIntro = '𝐒𝐢𝐦𝐮𝐥𝐚𝐜𝐢𝐨𝐧 𝐫𝐢𝐭𝐦𝐨 𝐝𝐞 𝐜𝐚𝐫𝐫𝐞𝐫𝐚\n'+ self.DicSesion[self.sesion]+" "+str((self.session.event['EventName'])).replace(" ", "")+ " "+self.DicCalendarFlag[self.weekend]+'\n𝑹𝒆𝒅𝑩𝒖𝒍𝒍🇦🇹 - 𝑭𝒆𝒓𝒓𝒂𝒓𝒊🇮🇹 - 𝑴𝒆𝒓𝒄𝒆𝒅𝒆𝒔🇩🇪 - 𝑨𝒔𝒕𝒐𝒏 𝑴𝒂𝒓𝒕𝒊𝒏🇬🇧 - Mclaren🇬🇧\n'
 
         plotDic = {}
         colors = []
@@ -474,6 +474,8 @@ class Sesion:
                 colors.append("#CC0000")
             elif(str(dicFinal[g]['Driver']) == 'ALO' or str(dicFinal[g]['Driver']) == 'STR' ):
                 colors.append("#00594F")
+            elif(str(dicFinal[g]['Driver']) == 'NOR' or str(dicFinal[g]['Driver']) == 'PIA' ):
+                colors.append("#FF8000")
             else:
                 colors.append("#48C9B0")
             plotDic[str(g)+"- "+str(dicFinal[g]['Driver'])] = float(dicFinal[g]['Average']) - float(dicFinal[1]['Average'])
@@ -760,7 +762,7 @@ class Sesion:
     def graph_qualy_simulation(self):
         cont = 0
         i = 1
-        dicNew = self.get_fastlap('PER','VER','LEC','SAI','HAM','RUS','ALO','STR')      
+        dicNew = self.get_fastlap('PER','VER','LEC','SAI','HAM','RUS','ALO','STR','PIA','NOR')      
         fastest = 0
         dicFinal = {}
         lsname = []
@@ -779,7 +781,7 @@ class Sesion:
         #put it all in a final string
 
         cont,i = 0, 0
-        textIntro = '𝐒𝐢𝐦𝐮𝐥𝐚𝐜𝐢𝐨𝐧 𝐝𝐞 𝐜𝐚𝐥𝐢𝐟𝐢𝐜𝐚𝐜𝐢𝐨𝐧\n'+ self.DicSesion[self.sesion]+" "+str((self.session.event['EventName'])).replace(" ", "")+ " "+self.DicCalendarFlag[self.weekend]+'\n𝑹𝒆𝒅𝑩𝒖𝒍𝒍🇦🇹 - 𝑭𝒆𝒓𝒓𝒂𝒓𝒊🇮🇹 - 𝑴𝒆𝒓𝒄𝒆𝒅𝒆𝒔🇩🇪 - 𝑨𝒔𝒕𝒐𝒏 𝑴𝒂𝒓𝒕𝒊𝒏🇬🇧\n'
+        textIntro = '𝐒𝐢𝐦𝐮𝐥𝐚𝐜𝐢𝐨𝐧 𝐝𝐞 𝐜𝐚𝐥𝐢𝐟𝐢𝐜𝐚𝐜𝐢𝐨𝐧\n'+ self.DicSesion[self.sesion]+" "+str((self.session.event['EventName'])).replace(" ", "")+ " "+self.DicCalendarFlag[self.weekend]+'\n𝑹𝒆𝒅𝑩𝒖𝒍𝒍🇦🇹 - 𝑭𝒆𝒓𝒓𝒂𝒓𝒊🇮🇹 - 𝑴𝒆𝒓𝒄𝒆𝒅𝒆𝒔🇩🇪 - 𝑨𝒔𝒕𝒐𝒏 𝑴𝒂𝒓𝒕𝒊𝒏🇬🇧 - Mclaren🇬🇧\n'
 
         plotDic = {}
         colors = []
@@ -791,6 +793,8 @@ class Sesion:
                 colors.append("#CC0000")
             elif(str(dicFinal[g]['Driver']) == 'ALO' or str(dicFinal[g]['Driver']) == 'STR' ):
                 colors.append("#00594F")
+            elif(str(dicFinal[g]['Driver']) == 'NOR' or str(dicFinal[g]['Driver']) == 'PIA' ):
+                colors.append("#FF8000")
             else:
                 colors.append("#48C9B0")
             plotDic[str(g)+"- "+str(dicFinal[g]['Driver'])] = float(dicFinal[g]['Lap']) - float(dicFinal[1]['Lap'])
@@ -1259,9 +1263,9 @@ class Driver(Sesion):
                 text1 = ''
         return text
 
-sesion = Sesion(2023, 5, 'R')
+#sesion = Sesion(2023, 11, 'FP2')
 
-print(sesion.get_RacePace('PER'))
+#print(sesion.graph_racepace_simulation())
 #get_lapFromObject(":01:34.632")
 #per = Driver('PER', 2022, 18, 'R')
 #print(sesion.get_CompFastLap2('VER','LEC'))
