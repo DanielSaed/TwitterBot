@@ -1,8 +1,5 @@
 # TwitterBot de analisis de datos sobre F1
 
-Desde la contratacion de Sergio Perez a RedBull, en conjunto con la introduccion de la serie Drive to survive de Netflix, nuevos fans han llegado a la F1, aunque esto implique tambien que el desconocieminto de ciertos temas tecnicos, el no entender el deporte, la falta de experiencia, entre otras cosas sean situaciones un poco mas visibles por obvias razones, ese es el motivo por el cual decidi empezar este proyecto.
-<br>
-
 ## Tecnologias y librerias utilizadas
 
 - Python 3.10 . Matplotlib
