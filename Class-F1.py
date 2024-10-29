@@ -11,6 +11,7 @@ from matplotlib.ticker import MaxNLocator
 import boto3
 import io
 
+#dd
 s3 = boto3.resource("s3")
 s3_client = boto3.client('s3')
 bucket = s3.Bucket("checobot")
@@ -19,7 +20,7 @@ bucket = s3.Bucket("checobot")
 ff1.Cache.enable_cache('C:/Users/admin/Documents/Github/BotTwitter/__pycache__') 
 pd.options.mode.chained_assignment = None 
 
-
+#test
 #Get seconds from laptime
 def get_secFromLap(string):
         
